@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="student1" class="entity.Student">
+        <property name="name" value="张三">
+        </property>
+    </bean>
+    <bean id="student2" class="entity.Student">
+        <property name="name" value="李四">
+        </property>
+    </bean>
+    <bean id="nameService" class="service.ClassByStudentNameServiceImpl">
+        <property name="studentList">
+            <list>
+                <ref bean="student1"></ref>
+                <ref bean="student2"></ref>
+            </list>
+        </property>
+    </bean>
+</beans>

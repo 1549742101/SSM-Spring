@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	namespace：命名空间，其值为某一个dao层类的具体路径
+ -->
+<mapper namespace="/">
+    <!-- sql语句保存在Mybatis的局部配置文件中 -->
+    <!--
+		select标签存放查询语句(List<User>)
+			id:在整个配置文件中id值必须唯一，其值与dao层类中的方法名保持一致
+			resultType：指定当前sql查询语句返回的数据类型。类型不是为sql语句的最终类型，而是某一条数据的类型
+	 -->
+    <select id="findStudentAndClass" resultType="java.lang.String" parameterType="java.util.ArrayList">
+        select classes.name from student join classes on classno=classes.no where student.name IN
+        <foreach item="item" index="index" collection="list" open="(" close=")" separator=",">
+            #{item.name}
+        </foreach>
+    </select>
+    <!--<select id="findClassAndStudent" resultMap="findStudentAndClass">
+        SELECT student.no as no,student.name as name,classno.no as cno,classno.name as cname FROM student join classno on student.classno = classno.no;
+    </select>-->
+</mapper>
